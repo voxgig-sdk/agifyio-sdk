@@ -1,0 +1,28 @@
+# BasicGetAgeFlow
+
+main: kit: flow: BasicGetAgeFlow:
+{
+  entity: "get_age",
+  kind: "basic",
+  name: "BasicGetAgeFlow",
+  step: [
+    {
+      input: {
+        ref: "get_age_ref01",
+        srcdatavar: "get_age_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_age_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetAgeFlow"
+}

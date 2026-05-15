@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://agify.io/"
+      }
+      description: "Estimate age from names. Integrate age inference directly into workflows and perform efficient inference on big datasets with simple APIs. Enrich data with demographic insights."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.agify.io"
+        }
+      ]
+      termsOfService: "https://agify.io/"
+      title: "Agify.io"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

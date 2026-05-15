@@ -1,0 +1,78 @@
+# Entity: get_age
+
+main: kit: entity: get_age: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_age"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "apikey"
+                orig: "apikey"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "US"
+                kind: "query"
+                name: "country_id"
+                orig: "country_id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "michael"
+                kind: "query"
+                name: "name"
+                orig: "name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/"
+          select: {
+            exist: [
+              "apikey"
+              "country_id"
+              "name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

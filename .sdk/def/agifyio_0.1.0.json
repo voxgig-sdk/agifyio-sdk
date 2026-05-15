@@ -1,0 +1,249 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Agify.io",
+    "description": "Estimate age from names. Integrate age inference directly into workflows and perform efficient inference on big datasets with simple APIs. Enrich data with demographic insights.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://agify.io/"
+    },
+    "termsOfService": "https://agify.io/"
+  },
+  "servers": [
+    {
+      "url": "https://api.agify.io",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Estimate age from name",
+        "description": "Predicts the age of a person based on their first name. Supports localization by country and can process single or multiple names.",
+        "operationId": "getAge",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "First name to estimate age for. Can be passed multiple times for batch requests (e.g., name[]=peter&name[]=john)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "michael"
+          },
+          {
+            "name": "country_id",
+            "in": "query",
+            "description": "Optional ISO 3166-1 alpha-2 country code to localize the age estimation to a specific country",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "example": "US"
+          },
+          {
+            "name": "apikey",
+            "in": "query",
+            "description": "API key for authenticated requests. Required for usage beyond the free tier (100 requests/day)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful age prediction response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/AgePrediction"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AgePrediction"
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "single": {
+                    "summary": "Single name prediction",
+                    "value": {
+                      "name": "michael",
+                      "age": 56,
+                      "count": 233490
+                    }
+                  },
+                  "withCountry": {
+                    "summary": "Prediction with country localization",
+                    "value": {
+                      "name": "michael",
+                      "age": 62,
+                      "count": 45087,
+                      "country_id": "US"
+                    }
+                  },
+                  "batch": {
+                    "summary": "Batch prediction for multiple names",
+                    "value": [
+                      {
+                        "name": "peter",
+                        "age": 58,
+                        "count": 165432
+                      },
+                      {
+                        "name": "john",
+                        "age": 61,
+                        "count": 298456
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Invalid country_id parameter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Invalid API key"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity - missing required name parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Missing 'name' parameter"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Request limit reached"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Age Prediction"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgePrediction": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name that was queried",
+            "example": "michael"
+          },
+          "age": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The estimated age for the name. Null if no data is available",
+            "example": 56
+          },
+          "count": {
+            "type": "integer",
+            "description": "The number of data records used to calculate the age estimate",
+            "example": 233490
+          },
+          "country_id": {
+            "type": "string",
+            "description": "The country code that was used for localization (if provided)",
+            "pattern": "^[A-Z]{2}$",
+            "example": "US"
+          }
+        },
+        "required": [
+          "name",
+          "age",
+          "count"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apikey",
+        "description": "API key for authentication. Free tier allows 100 requests per day without API key (IP-based limiting). Paid plans require an API key."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Age Prediction",
+      "description": "Endpoints for estimating age from first names"
+    }
+  ],
+  "externalDocs": {
+    "description": "Official Agify.io Documentation",
+    "url": "https://agify.io/"
+  }
+}
