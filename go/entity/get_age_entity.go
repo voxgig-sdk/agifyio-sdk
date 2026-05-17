@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/agifyio-sdk/core"
+	"github.com/voxgig-sdk/agifyio-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/agifyio-sdk/go/utility/struct"
 )
 
 type GetAgeEntity struct {

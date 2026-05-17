@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/agifyio-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/agifyio-sdk/core"
+	"github.com/voxgig-sdk/agifyio-sdk/go/core"
 )
 
 func defaultHTTPFetch(fullurl string, fetchdef map[string]any) (map[string]any, error) {

@@ -4,17 +4,20 @@
       "GET_AGE00": {
         "age": "s1e",
         "count": "s1f",
-        "name": "s20"
+        "name": "s20",
+        "id": "GET_AGE00"
       },
       "GET_AGE01": {
         "age": "s3c",
         "count": "s3d",
-        "name": "s3e"
+        "name": "s3e",
+        "id": "GET_AGE01"
       },
       "GET_AGE02": {
         "age": "s5a",
         "count": "s5b",
-        "name": "s5c"
+        "name": "s5c",
+        "id": "GET_AGE02"
       }
     }
   },

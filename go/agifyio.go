@@ -1,10 +1,10 @@
 package voxgigagifyiosdk
 
 import (
-	"github.com/voxgig-sdk/agifyio-sdk/core"
-	"github.com/voxgig-sdk/agifyio-sdk/entity"
-	"github.com/voxgig-sdk/agifyio-sdk/feature"
-	_ "github.com/voxgig-sdk/agifyio-sdk/utility"
+	"github.com/voxgig-sdk/agifyio-sdk/go/core"
+	"github.com/voxgig-sdk/agifyio-sdk/go/entity"
+	"github.com/voxgig-sdk/agifyio-sdk/go/feature"
+	_ "github.com/voxgig-sdk/agifyio-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/agifyio-sdk"
-	"github.com/voxgig-sdk/agifyio-sdk/core"
+	sdk "github.com/voxgig-sdk/agifyio-sdk/go"
+	"github.com/voxgig-sdk/agifyio-sdk/go/core"
 )
 
 func TestGetAgeDirect(t *testing.T) {
