@@ -64,14 +64,12 @@ def _get_age_direct_setup(mockres):
     env = runner.env_override({
         "AGIFYIO_TEST_GET_AGE_ENTID": {},
         "AGIFYIO_TEST_LIVE": "FALSE",
-        "AGIFYIO_APIKEY": "NONE",
     })
 
     live = env.get("AGIFYIO_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("AGIFYIO_APIKEY"),
         }
         client = AgifyioSDK(merged_opts)
         return {

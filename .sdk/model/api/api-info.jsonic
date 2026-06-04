@@ -17,8 +17,29 @@ main: {
       termsOfService: "https://agify.io/"
       title: "Agify.io"
       version: "1.0.0"
+      tagline: "Estimate a person's age from their first name using a dataset of around 1 billion names"
+      homepage: "https://agify.io/"
+      docs_url: "https://agify.io/documentation"
+      license_short: "Commercial service operated by Demografix ApS; free tier available, paid plans for higher volume."
+      license_md: `- Operated by Demografix ApS (Roskilde, Denmark).
+- Free tier: 2,500 names/month, no credit card required.
+- Paid plans start at $20/month for higher volume.
+- See agify.io for Terms of Service, Privacy Policy and GDPR / Data Processing Agreement.`
+      about_md: `Agify is a name-to-age inference API operated by [Demografix ApS](https://agify.io/) in Roskilde, Denmark. It predicts a likely age for a given first name by correlating name popularity cycles with birth years across a dataset of roughly a billion people. Agify is one of a family of three sister APIs alongside [Genderize.io](https://genderize.io/) (gender from names) and [Nationalize.io](https://nationalize.io/) (nationality from names).
+
+**What you get from the API:**
+
+- \`name\` — the submitted name, echoed back
+- \`age\` — the predicted age
+- \`count\` — the number of records the prediction was based on
+
+The service supports full name parsing, diacritics and non-Latin alphabets, and optional geographic scoping to a specific country for improved accuracy.
+
+Requests go to \`https://api.agify.io\` over HTTPS as a simple \`GET\` with a \`name\` query parameter; CORS is enabled. An \`apikey\` query parameter is required — sign in at agify.io to obtain one. The free tier allows 2,500 names per month.`
+      entity_desc: {
+        get_age: "A single name-lookup resource that returns an estimated age, exposed at `/?name=...` on `https://api.agify.io`."
+      }
+      auth: false
     }
   }
-}
-
 }
