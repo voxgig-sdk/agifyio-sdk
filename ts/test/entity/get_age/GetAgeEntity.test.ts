@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'AGIFYIO_TEST_GET_AGE_ENTID': idmap,
     'AGIFYIO_TEST_LIVE': 'FALSE',
     'AGIFYIO_TEST_EXPLAIN': 'FALSE',
+    'AGIFYIO_APIKEY': 'NONE',
   })
 
   idmap = env['AGIFYIO_TEST_GET_AGE_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new AgifyioSDK(merge([
       {
+        apikey: env.AGIFYIO_APIKEY,
       },
       extra
     ]))

@@ -78,12 +78,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'AGIFYIO_TEST_GET_AGE_ENTID': {},
     'AGIFYIO_TEST_LIVE': 'FALSE',
+    'AGIFYIO_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.AGIFYIO_TEST_LIVE
 
   if (live) {
     const client = new AgifyioSDK({
+      apikey: env.AGIFYIO_APIKEY,
     })
 
     let idmap: any = env['AGIFYIO_TEST_GET_AGE_ENTID']

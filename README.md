@@ -1,22 +1,8 @@
 # Agifyio SDK
 
-Estimate a person's age from their first name using a dataset of around 1 billion names
+Agify.io client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Agify.io
-
-Agify is a name-to-age inference API operated by [Demografix ApS](https://agify.io/) in Roskilde, Denmark. It predicts a likely age for a given first name by correlating name popularity cycles with birth years across a dataset of roughly a billion people. Agify is one of a family of three sister APIs alongside [Genderize.io](https://genderize.io/) (gender from names) and [Nationalize.io](https://nationalize.io/) (nationality from names).
-
-**What you get from the API:**
-
-- `name` — the submitted name, echoed back
-- `age` — the predicted age
-- `count` — the number of records the prediction was based on
-
-The service supports full name parsing, diacritics and non-Latin alphabets, and optional geographic scoping to a specific country for improved accuracy.
-
-Requests go to `https://api.agify.io` over HTTPS as a simple `GET` with a `name` query parameter; CORS is enabled. An `apikey` query parameter is required — sign in at agify.io to obtain one. The free tier allows 2,500 names per month.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install agifyio-sdk
 luarocks install agifyio-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { AgifyioSDK } from 'agifyio'
 
-const client = new AgifyioSDK({})
+const client = new AgifyioSDK({
+  apikey: process.env.AGIFYIO_APIKEY,
+})
 
+// Load getage data
+const getage = await client.GetAge().load({})
+console.log(getage.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetAge** | A single name-lookup resource that returns an estimated age, exposed at `/?name=...` on `https://api.agify.io`. | `/` |
+| **GetAge** |  | `/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from agifyio_sdk import AgifyioSDK
 
-client = AgifyioSDK({})
+client = AgifyioSDK({
+    "apikey": os.environ.get("AGIFYIO_APIKEY"),
+})
 
 
 # Load a specific getage
-getage, err = client.GetAge(None).load(
-    {"id": "example_id"}, None
-)
+getage, err = client.GetAge().load({"id": "example_id"})
+print(getage)
 ```
 
 ### PHP
@@ -127,13 +119,14 @@ getage, err = client.GetAge(None).load(
 <?php
 require_once 'agifyio_sdk.php';
 
-$client = new AgifyioSDK([]);
+$client = new AgifyioSDK([
+    "apikey" => getenv("AGIFYIO_APIKEY"),
+]);
 
 
 // Load a specific getage
-[$getage, $err] = $client->GetAge(null)->load(
-    ["id" => "example_id"], null
-);
+[$getage, $err] = $client->GetAge()->load(["id" => "example_id"]);
+print_r($getage);
 ```
 
 ### Golang
@@ -141,8 +134,13 @@ $client = new AgifyioSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/agifyio-sdk/go"
 
-client := sdk.NewAgifyioSDK(map[string]any{})
+client := sdk.NewAgifyioSDK(map[string]any{
+    "apikey": os.Getenv("AGIFYIO_APIKEY"),
+})
 
+// Load getage data
+getage, err := client.GetAge(nil).Load(map[string]any{}, nil)
+fmt.Println(getage)
 ```
 
 ### Ruby
@@ -150,13 +148,14 @@ client := sdk.NewAgifyioSDK(map[string]any{})
 ```ruby
 require_relative "Agifyio_sdk"
 
-client = AgifyioSDK.new({})
+client = AgifyioSDK.new({
+  "apikey" => ENV["AGIFYIO_APIKEY"],
+})
 
 
 # Load a specific getage
-getage, err = client.GetAge(nil).load(
-  { "id" => "example_id" }, nil
-)
+getage, err = client.GetAge().load({ "id" => "example_id" })
+puts getage
 ```
 
 ### Lua
@@ -164,13 +163,14 @@ getage, err = client.GetAge(nil).load(
 ```lua
 local sdk = require("agifyio_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("AGIFYIO_APIKEY"),
+})
 
 
 -- Load a specific getage
-local getage, err = client:GetAge(nil):load(
-  { id = "example_id" }, nil
-)
+local getage, err = client:GetAge():load({ id = "example_id" })
+print(getage)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +189,21 @@ const result = await client.GetAge().load({ id: 'test01' })
 ### Python
 
 ```python
-client = AgifyioSDK.test(None, None)
-result, err = client.GetAge(None).load(
-    {"id": "test01"}, None
-)
+client = AgifyioSDK.test()
+result, err = client.GetAge().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = AgifyioSDK::test(null, null);
-[$result, $err] = $client->GetAge(null)->load(
-    ["id" => "test01"], null
-);
+$client = AgifyioSDK::test();
+[$result, $err] = $client->GetAge()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetAge(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +212,15 @@ result, err := client.GetAge(nil).Load(
 ### Ruby
 
 ```ruby
-client = AgifyioSDK.test(nil, nil)
-result, err = client.GetAge(nil).load(
-  { "id" => "test01" }, nil
-)
+client = AgifyioSDK.test
+result, err = client.GetAge().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetAge(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetAge():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,16 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Agify.io
-
-- Upstream: [https://agify.io/](https://agify.io/)
-- API docs: [https://agify.io/documentation](https://agify.io/documentation)
-
-- Operated by Demografix ApS (Roskilde, Denmark).
-- Free tier: 2,500 names/month, no credit card required.
-- Paid plans start at $20/month for higher volume.
-- See agify.io for Terms of Service, Privacy Policy and GDPR / Data Processing Agreement.
 
 ---
 

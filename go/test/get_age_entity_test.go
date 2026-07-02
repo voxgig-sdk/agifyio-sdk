@@ -117,6 +117,7 @@ func get_ageBasicSetup(extra map[string]any) *entityTestSetup {
 		"AGIFYIO_TEST_GET_AGE_ENTID": idmap,
 		"AGIFYIO_TEST_LIVE":      "FALSE",
 		"AGIFYIO_TEST_EXPLAIN":   "FALSE",
+		"AGIFYIO_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["AGIFYIO_TEST_GET_AGE_ENTID"])
@@ -127,6 +128,7 @@ func get_ageBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["AGIFYIO_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["AGIFYIO_APIKEY"],
 			},
 			extra,
 		})

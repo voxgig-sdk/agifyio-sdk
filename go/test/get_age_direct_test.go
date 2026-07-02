@@ -105,12 +105,14 @@ func get_ageDirectSetup(mockres any) *get_ageDirectSetupResult {
 	env := envOverride(map[string]any{
 		"AGIFYIO_TEST_GET_AGE_ENTID": map[string]any{},
 		"AGIFYIO_TEST_LIVE":    "FALSE",
+		"AGIFYIO_APIKEY":       "NONE",
 	})
 
 	live := env["AGIFYIO_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["AGIFYIO_APIKEY"],
 		}
 		client := sdk.NewAgifyioSDK(mergedOpts)
 

@@ -91,6 +91,7 @@ def _get_age_basic_setup(extra):
         "AGIFYIO_TEST_GET_AGE_ENTID": idmap,
         "AGIFYIO_TEST_LIVE": "FALSE",
         "AGIFYIO_TEST_EXPLAIN": "FALSE",
+        "AGIFYIO_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _get_age_basic_setup(extra):
     if env.get("AGIFYIO_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("AGIFYIO_APIKEY"),
             },
             extra or {},
         ])

@@ -73,12 +73,14 @@ function get_age_direct_setup($mockres)
     $env = Runner::env_override([
         "AGIFYIO_TEST_GET_AGE_ENTID" => [],
         "AGIFYIO_TEST_LIVE" => "FALSE",
+        "AGIFYIO_APIKEY" => "NONE",
     ]);
 
     $live = $env["AGIFYIO_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["AGIFYIO_APIKEY"],
         ];
         $client = new AgifyioSDK($merged_opts);
         return [

@@ -68,12 +68,14 @@ function get_age_direct_setup(mockres)
   local env = runner.env_override({
     ["AGIFYIO_TEST_GET_AGE_ENTID"] = {},
     ["AGIFYIO_TEST_LIVE"] = "FALSE",
+    ["AGIFYIO_APIKEY"] = "NONE",
   })
 
   local live = env["AGIFYIO_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["AGIFYIO_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

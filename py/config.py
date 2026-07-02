@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.agify.io",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,65 +29,68 @@ def make_config():
       "get_age": {
         "fields": [
           {
+            "active": True,
             "name": "age",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "count",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "name",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
         ],
         "name": "get_age",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "apikey",
                       "orig": "apikey",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": "US",
                       "kind": "query",
                       "name": "country_id",
                       "orig": "country_id",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": "michael",
                       "kind": "query",
                       "name": "name",
                       "orig": "name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
                 "method": "GET",
                 "orig": "/",
+                "parts": [],
                 "select": {
                   "exist": [
                     "apikey",
@@ -96,12 +102,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "parts": [],
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },

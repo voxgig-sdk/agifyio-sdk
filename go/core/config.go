@@ -14,6 +14,9 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://api.agify.io",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -25,65 +28,68 @@ func MakeConfig() map[string]any {
 			"get_age": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "age",
 						"req": false,
 						"type": "`$INTEGER`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "count",
 						"req": false,
 						"type": "`$INTEGER`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "name",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 2,
 					},
 				},
 				"name": "get_age",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "apikey",
 											"orig": "apikey",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"example": "US",
 											"kind": "query",
 											"name": "country_id",
 											"orig": "country_id",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"example": "michael",
 											"kind": "query",
 											"name": "name",
 											"orig": "name",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
 								"method": "GET",
 								"orig": "/",
+								"parts": []any{},
 								"select": map[string]any{
 									"exist": []any{
 										"apikey",
@@ -95,12 +101,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"parts": []any{},
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},

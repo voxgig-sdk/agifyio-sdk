@@ -20,6 +20,9 @@ class AgifyioConfig
             ],
             "options" => [
                 "base" => "https://api.agify.io",
+                "auth" => [
+                    "prefix" => "Bearer",
+                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -31,65 +34,68 @@ class AgifyioConfig
         'get_age' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'age',
               'req' => false,
               'type' => '`$INTEGER`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'count',
               'req' => false,
               'type' => '`$INTEGER`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'name',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 2,
             ],
           ],
           'name' => 'get_age',
           'op' => [
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'apikey',
                         'orig' => 'apikey',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => 'US',
                         'kind' => 'query',
                         'name' => 'country_id',
                         'orig' => 'country_id',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => 'michael',
                         'kind' => 'query',
                         'name' => 'name',
                         'orig' => 'name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
                   'method' => 'GET',
                   'orig' => '/',
+                  'parts' => [],
                   'select' => [
                     'exist' => [
                       'apikey',
@@ -101,12 +107,9 @@ class AgifyioConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
-                  'parts' => [],
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],
