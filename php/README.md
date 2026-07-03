@@ -10,7 +10,7 @@ The PHP SDK for the Agifyio API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/agifyio-sdk
+composer require voxgig-sdk/agifyio
 ```
 
 

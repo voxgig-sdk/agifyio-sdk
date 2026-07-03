@@ -10,7 +10,7 @@ The TypeScript SDK for the Agifyio API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install agifyio
+npm install @voxgig-sdk/agifyio
 ```
 ## Tutorial: your first API call
 

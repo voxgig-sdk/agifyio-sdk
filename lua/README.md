@@ -10,7 +10,7 @@ The Lua SDK for the Agifyio API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install agifyio-sdk
+luarocks install voxgig-sdk-agifyio
 ```
 
 If the module is not yet published, add the source directory to

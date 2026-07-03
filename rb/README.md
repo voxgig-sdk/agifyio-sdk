@@ -10,13 +10,13 @@ The Ruby SDK for the Agifyio API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install agifyio-sdk
+gem install voxgig-sdk-agifyio
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "agifyio-sdk"
+gem "voxgig-sdk-agifyio"
 ```
 
 Then run:

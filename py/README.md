@@ -10,7 +10,7 @@ The Python SDK for the Agifyio API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install agifyio-sdk
+pip install voxgig-sdk-agifyio
 ```
 
 Or install from source:
