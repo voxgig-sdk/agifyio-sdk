@@ -204,14 +204,7 @@ class AgifyioSDK {
 
 
 
-  _get_age?: GetAgeEntity
-
-  // Idiomatic facade: `client.get_age.list()` / `client.get_age.load({ id })`.
-  get get_age(): GetAgeEntity {
-    return (this._get_age ??= new GetAgeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_age` instead. */
+  // Entity access: `client.GetAge().list()` / `client.GetAge().load({ id })`.
   GetAge(data?: any) {
     const self = this
     return new GetAgeEntity(self,data)

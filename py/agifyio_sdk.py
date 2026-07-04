@@ -220,25 +220,15 @@ class AgifyioSDK:
         }
 
 
-    @property
-    def get_age(self):
-        """Idiomatic facade: client.get_age.list() / client.get_age.load({"id": ...})."""
-        from entity.get_age_entity import GetAgeEntity
-        cached = getattr(self, "_get_age", None)
-        if cached is None:
-            cached = GetAgeEntity(self, None)
-            self._get_age = cached
-        return cached
-
-    def GetAge(self, data=None):
-        # Deprecated: use client.get_age instead.
+    def GetAge(self, data=None) -> "GetAgeEntity":
+        """Entity factory: client.GetAge().list({}) / client.GetAge().load({"id": ...})."""
         from entity.get_age_entity import GetAgeEntity
         return GetAgeEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "AgifyioSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class AgifyioSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_age_entity import GetAgeEntity

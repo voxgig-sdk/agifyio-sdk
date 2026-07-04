@@ -35,9 +35,10 @@ $client = new AgifyioSDK([
 
 ```php
 try {
-    $result = $client->getage()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare GetAge record (throws on error).
+    $getage = $client->GetAge()->load(["id" => "example_id"]);
+    print_r($getage);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = AgifyioSDK::test();
+$client = AgifyioSDK::test([
+    "entity" => ["getage" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getage()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getage = $client->GetAge()->load(["id" => "test01"]);
+print_r($getage);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +234,7 @@ API path: `/`
 
 ### GetAge
 
-Create an instance: `const get_age = client.get_age`
+Create an instance: `$get_age = $client->GetAge();`
 
 #### Operations
 
@@ -247,8 +252,9 @@ Create an instance: `const get_age = client.get_age`
 
 #### Example: Load
 
-```ts
-const get_age = await client.get_age.load({ id: 'get_age_id' })
+```php
+// load() returns the bare GetAge record (throws on error).
+$get_age = $client->GetAge()->load(["id" => "get_age_id"]);
 ```
 
 
@@ -323,7 +329,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getage = $client->getage();
+$getage = $client->GetAge();
 $getage->load(["id" => "example_id"]);
 
 // $getage->dataGet() now returns the loaded getage data

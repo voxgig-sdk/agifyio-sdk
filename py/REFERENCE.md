@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetAgeEntity
 
 ```python
-get_age = client.get_age
+get_age = client.GetAge()
 ```
 
 ### Fields
@@ -99,7 +99,7 @@ get_age = client.get_age
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_age.load({"id": "get_age_id"})
+result = client.GetAge().load({"id": "get_age_id"})
 ```
 
 ### Common Methods

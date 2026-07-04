@@ -28,9 +28,9 @@ const client = new AgifyioSDK({
   apikey: process.env.AGIFYIO_APIKEY,
 })
 
-// Load getage data
-const getage = await client.getage.load({})
-console.log(getage.data)
+// Load getage data (returns a GetAge)
+const getage = await client.GetAge().load()
+console.log(getage)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,8 +89,8 @@ client = AgifyioSDK({
 })
 
 
-# Load a specific getage
-getage = client.getage.load({"id": "example_id"})
+# Load a specific getage (returns the record, raises on error)
+getage = client.GetAge().load({"id": "example_id"})
 print(getage)
 ```
 
@@ -105,8 +105,8 @@ $client = new AgifyioSDK([
 ]);
 
 
-// Load a specific getage
-$getage = $client->getage()->load(["id" => "example_id"]);
+// Load a specific getage (returns the bare record; throws on error)
+$getage = $client->GetAge()->load(["id" => "example_id"]);
 print_r($getage);
 ```
 
@@ -134,8 +134,8 @@ client = AgifyioSDK.new({
 })
 
 
-# Load a specific getage
-getage = client.getage.load({ "id" => "example_id" })
+# Load a specific getage (returns the bare record; raises on error)
+getage = client.GetAge.load({ "id" => "example_id" })
 puts getage
 ```
 
@@ -150,7 +150,7 @@ local client = sdk.new({
 
 
 -- Load a specific getage
-local getage, err = client:getage():load({ id = "example_id" })
+local getage, err = client:GetAge():load({ id = "example_id" })
 print(getage)
 ```
 
@@ -163,22 +163,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AgifyioSDK.test()
-const result = await client.getage.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getage = await client.GetAge().load({ id: 'test01' })
+// getage is a bare GetAge populated with mock data
+console.log(getage)
 ```
 
 ### Python
 
 ```python
 client = AgifyioSDK.test()
-result = client.getage.load({"id": "test01"})
+getage = client.GetAge().load({"id": "test01"})
+print(getage)
 ```
 
 ### PHP
 
 ```php
-$client = AgifyioSDK::test();
-$result = $client->getage()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = AgifyioSDK::test([
+    "entity" => ["getage" => ["test01" => ["id" => "test01"]]],
+]);
+$getage = $client->GetAge()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +198,18 @@ result, err := client.GetAge(nil).Load(
 ### Ruby
 
 ```ruby
-client = AgifyioSDK.test
-result = client.getage.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = AgifyioSDK.test({
+  "entity" => { "getage" => { "test01" => { "id" => "test01" } } },
+})
+getage = client.GetAge.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getage():load({ id = "test01" })
+local result, err = client:GetAge():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +257,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

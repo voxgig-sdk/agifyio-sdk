@@ -86,7 +86,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GetAgeEntity
 
 ```php
-$get_age = $client->get_age();
+$get_age = $client->GetAge();
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ $get_age = $client->get_age();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_age()->load(["id" => "get_age_id"]);
+$result = $client->GetAge()->load(["id" => "get_age_id"]);
 ```
 
 ### Common Methods

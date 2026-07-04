@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## GetAgeEntity
 
 ```ruby
-get_age = client.get_age
+get_age = client.GetAge
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ get_age = client.get_age
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_age.load({ "id" => "get_age_id" })
+result = client.GetAge.load({ "id" => "get_age_id" })
 ```
 
 ### Common Methods

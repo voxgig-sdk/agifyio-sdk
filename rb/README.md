@@ -34,8 +34,9 @@ client = AgifyioSDK.new({
 
 ```ruby
 begin
-  result = client.getage.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare GetAge record (raises on error).
+  getage = client.GetAge.load({ "id" => "example_id" })
+  puts getage
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = AgifyioSDK.test
+client = AgifyioSDK.test({
+  "entity" => { "getage" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.getage.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+getage = client.GetAge.load({ "id" => "test01" })
+puts getage
 ```
 
 ### Use a custom fetch function
@@ -224,7 +229,7 @@ API path: `/`
 
 ### GetAge
 
-Create an instance: `const get_age = client.get_age`
+Create an instance: `get_age = client.GetAge`
 
 #### Operations
 
@@ -242,8 +247,9 @@ Create an instance: `const get_age = client.get_age`
 
 #### Example: Load
 
-```ts
-const get_age = await client.get_age.load({ id: 'get_age_id' })
+```ruby
+# load returns the bare GetAge record (raises on error).
+get_age = client.GetAge.load({ "id" => "get_age_id" })
 ```
 
 
@@ -318,7 +324,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getage = client.getage
+getage = client.GetAge
 getage.load({ "id" => "example_id" })
 
 # getage.data_get now returns the loaded getage data

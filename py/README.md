@@ -36,10 +36,12 @@ client = AgifyioSDK({
 
 ### 3. Load a getage
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.getage.load({"id": "example_id"})
-    print(result)
+    getage = client.GetAge().load({"id": "example_id"})
+    print(getage)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AgifyioSDK.test()
 
-result = client.getage.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getage = client.GetAge().load({"id": "test01"})
+# getage contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -225,7 +228,7 @@ API path: `/`
 
 ### GetAge
 
-Create an instance: `const get_age = client.get_age`
+Create an instance: `get_age = client.GetAge()`
 
 #### Operations
 
@@ -243,8 +246,8 @@ Create an instance: `const get_age = client.get_age`
 
 #### Example: Load
 
-```ts
-const get_age = await client.get_age.load({ id: 'get_age_id' })
+```python
+get_age = client.GetAge().load({"id": "get_age_id"})
 ```
 
 
@@ -318,7 +321,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getage = client.getage
+getage = client.GetAge()
 getage.load({"id": "example_id"})
 
 # getage.data_get() now returns the loaded getage data

@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## GetAgeEntity
 
 ```lua
-local get_age = client:get_age(nil)
+local get_age = client:GetAge(nil)
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ local get_age = client:get_age(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_age():load({ id = "get_age_id" })
+local result, err = client:GetAge():load({ id = "get_age_id" })
 ```
 
 ### Common Methods

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:get_age():list() / client:get_age():load({ id = ... })
-function AgifyioSDK:get_age(data)
+-- Idiomatic facade: client:GetAge():list() / client:GetAge():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AgifyioSDK:GetAge(data)
   local EntityMod = require("entity.get_age_entity")
   if data == nil then
     if self._get_age == nil then
@@ -253,12 +254,6 @@ function AgifyioSDK:get_age(data)
     end
     return self._get_age
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:get_age() instead.
-function AgifyioSDK:GetAge(data)
-  local EntityMod = require("entity.get_age_entity")
   return EntityMod.new(self, data)
 end
 

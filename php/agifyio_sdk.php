@@ -233,10 +233,10 @@ class AgifyioSDK
 
     private $_get_age = null;
 
-    // Idiomatic facade: $client->get_age()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetAge() (PHP method
-    // names are case-insensitive).
-    public function get_age($data = null)
+    // Canonical facade: $client->GetAge()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_age()
+    // resolves here too.
+    public function GetAge($data = null)
     {
         require_once __DIR__ . '/entity/get_age_entity.php';
         if ($data === null) {

@@ -208,13 +208,7 @@ class AgifyioSDK
   end
 
 
-  # Idiomatic facade: client.get_age.list / client.get_age.load({ "id" => ... })
-  def get_age
-    require_relative 'entity/get_age_entity'
-    @get_age ||= GetAgeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_age instead.
+  # Canonical facade: client.GetAge.list / client.GetAge.load({ "id" => ... })
   def GetAge(data = nil)
     require_relative 'entity/get_age_entity'
     GetAgeEntity.new(self, data)
