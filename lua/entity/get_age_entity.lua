@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetAgeLoadMatch
+---@param ctrl? table
+---@return GetAge
+---@return string? err
 function GetAgeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

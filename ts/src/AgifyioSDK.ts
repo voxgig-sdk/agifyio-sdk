@@ -2,6 +2,8 @@
 
 import { GetAgeEntity } from './entity/GetAgeEntity'
 
+export type * from './AgifyioTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class AgifyioSDK {
 
 
 
+  _get_age?: GetAgeEntity
+
+  // Idiomatic facade: `client.get_age.list()` / `client.get_age.load({ id })`.
+  get get_age(): GetAgeEntity {
+    return (this._get_age ??= new GetAgeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_age` instead. */
   GetAge(data?: any) {
     const self = this
     return new GetAgeEntity(self,data)

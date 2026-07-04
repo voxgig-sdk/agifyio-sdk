@@ -49,8 +49,7 @@ class TestGetAgeEntity:
         # LOAD
         get_age_ref01_ent = client.GetAge(None)
         get_age_ref01_match_dt0 = {}
-        get_age_ref01_data_dt0_loaded, err = get_age_ref01_ent.load(get_age_ref01_match_dt0, None)
-        assert err is None
+        get_age_ref01_data_dt0_loaded = get_age_ref01_ent.load(get_age_ref01_match_dt0, None)
         assert get_age_ref01_data_dt0_loaded is not None
 
 

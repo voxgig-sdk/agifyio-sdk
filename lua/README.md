@@ -9,12 +9,9 @@ The Lua SDK for the Agifyio API — an entity-oriented client using Lua conventi
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-agifyio
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/agifyio-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -39,7 +36,7 @@ local client = sdk.new({
 ### 3. Load a getage
 
 ```lua
-local result, err = client:GetAge():load({ id = "example_id" })
+local result, err = client:getage():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Agifyio():load({ id = "test01" })
+local result, err = client:getage():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -223,7 +220,7 @@ API path: `/`
 
 ### GetAge
 
-Create an instance: `const get_age = client.GetAge()`
+Create an instance: `const get_age = client.get_age`
 
 #### Operations
 
@@ -242,7 +239,7 @@ Create an instance: `const get_age = client.GetAge()`
 #### Example: Load
 
 ```ts
-const get_age = await client.GetAge().load({ id: 'get_age_id' })
+const get_age = await client.get_age.load({ id: 'get_age_id' })
 ```
 
 
@@ -317,11 +314,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local getage = client:getage()
+getage:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- getage:data_get() now returns the loaded getage data
+-- getage:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -9,9 +9,12 @@ The TypeScript SDK for the Agifyio API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/agifyio
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/agifyio-sdk/releases](https://github.com/voxgig-sdk/agifyio-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AgifyioSDK } from 'agifyio'
+import { AgifyioSDK } from '@voxgig-sdk/agifyio'
 
 const client = new AgifyioSDK({
   apikey: process.env.AGIFYIO_APIKEY,
@@ -30,7 +33,7 @@ const client = new AgifyioSDK({
 ### 3. Load a getage
 
 ```ts
-const result = await client.GetAge().load({ id: 'example_id' })
+const result = await client.getage.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AgifyioSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.getage.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.getage
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -268,7 +271,7 @@ API path: `/`
 
 ### GetAge
 
-Create an instance: `const get_age = client.GetAge()`
+Create an instance: `const get_age = client.get_age`
 
 #### Operations
 
@@ -287,7 +290,7 @@ Create an instance: `const get_age = client.GetAge()`
 #### Example: Load
 
 ```ts
-const get_age = await client.GetAge().load({ id: 'get_age_id' })
+const get_age = await client.get_age.load({ id: 'get_age_id' })
 ```
 
 
@@ -348,7 +351,7 @@ agifyio/
 Import the SDK from the package root:
 
 ```ts
-import { AgifyioSDK } from 'agifyio'
+import { AgifyioSDK } from '@voxgig-sdk/agifyio'
 ```
 
 ### Entity state
@@ -358,11 +361,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const getage = client.getage
+await getage.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// getage.data() now returns the loaded getage data
+// getage.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -110,7 +110,7 @@ Alias for `AgifyioSDK.test()`.
 ## GetAgeEntity
 
 ```ts
-const get_age = client.GetAge()
+const get_age = client.get_age
 ```
 
 ### Fields
@@ -128,7 +128,7 @@ const get_age = client.GetAge()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetAge().load({ id: 'get_age_id' })
+const result = await client.get_age.load({ id: 'get_age_id' })
 ```
 
 ### Common Methods

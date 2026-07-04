@@ -245,6 +245,9 @@ func (sdk *AgifyioSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// GetAge returns a GetAge entity bound to this client.
+// Idiomatic usage: client.GetAge(nil).List(nil, nil) or
+// client.GetAge(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AgifyioSDK) GetAge(data map[string]any) AgifyioEntity {
 	return NewGetAgeEntityFunc(sdk, data)
 }

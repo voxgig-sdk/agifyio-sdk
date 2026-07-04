@@ -45,6 +45,7 @@ class GetAgeEntity
     end
   end
 
+  # @return [GetAge, Hash] the current GetAge data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class GetAgeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GetAge fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single GetAge.
+  #
+  # @param reqmatch [GetAgeLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [GetAge, Hash] the loaded GetAge; raises AgifyioError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

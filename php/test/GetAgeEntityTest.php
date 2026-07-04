@@ -49,8 +49,7 @@ class GetAgeEntityTest extends TestCase
         // LOAD
         $get_age_ref01_ent = $client->GetAge(null);
         $get_age_ref01_match_dt0 = [];
-        [$get_age_ref01_data_dt0_loaded, $err] = $get_age_ref01_ent->load($get_age_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_age_ref01_data_dt0_loaded = $get_age_ref01_ent->load($get_age_ref01_match_dt0, null);
         $this->assertNotNull($get_age_ref01_data_dt0_loaded);
 
     }

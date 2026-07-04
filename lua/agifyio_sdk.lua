@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:get_age():list() / client:get_age():load({ id = ... })
+function AgifyioSDK:get_age(data)
+  local EntityMod = require("entity.get_age_entity")
+  if data == nil then
+    if self._get_age == nil then
+      self._get_age = EntityMod.new(self, nil)
+    end
+    return self._get_age
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_age() instead.
 function AgifyioSDK:GetAge(data)
   local EntityMod = require("entity.get_age_entity")
   return EntityMod.new(self, data)

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetAge,
+  GetAgeLoadMatch,
+} from '../AgifyioTypes'
 
 // TODO: needs Entity superclass
-class GetAgeEntity extends AgifyioEntityBase {
+class GetAgeEntity extends AgifyioEntityBase<GetAge> {
 
   constructor(client: AgifyioSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetAgeEntity extends AgifyioEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetAgeLoadMatch, ctrl?: Control): Promise<GetAge> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetAgeEntity extends AgifyioEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetAge> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
