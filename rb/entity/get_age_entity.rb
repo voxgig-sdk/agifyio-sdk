@@ -67,10 +67,12 @@ class GetAgeEntity
   
   # Load a single GetAge.
   #
-  # @param reqmatch [GetAgeLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [GetAgeLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.GetAge.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [GetAge, Hash] the loaded GetAge; raises AgifyioError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

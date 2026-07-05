@@ -8,7 +8,7 @@ Complete API reference for the Agifyio Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'agifyio_sdk'
+require_relative 'Agifyio_sdk'
 
 client = AgifyioSDK.new(options)
 ```
@@ -94,9 +94,9 @@ get_age = client.GetAge
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `age` | `Integer` | No |  |
+| `count` | `Integer` | No |  |
+| `name` | `String` | No |  |
 
 ### Operations
 
@@ -105,7 +105,7 @@ get_age = client.GetAge
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetAge.load({ "id" => "get_age_id" })
+result = client.GetAge.load()
 ```
 
 ### Common Methods

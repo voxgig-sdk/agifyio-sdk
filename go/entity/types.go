@@ -15,8 +15,7 @@ type GetAge struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// GetAgeLoadMatch mirrors the get_age fields as an all-optional match
-// filter (Go analog of Partial<GetAge>).
+// GetAgeLoadMatch is the typed request payload for GetAge.LoadTyped.
 type GetAgeLoadMatch struct {
 	Age *int `json:"age,omitempty"`
 	Count *int `json:"count,omitempty"`

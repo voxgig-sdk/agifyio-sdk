@@ -221,7 +221,7 @@ class AgifyioSDK:
 
 
     def GetAge(self, data=None) -> "GetAgeEntity":
-        """Entity factory: client.GetAge().list({}) / client.GetAge().load({"id": ...})."""
+        """Entity factory: client.GetAge().list() / client.GetAge().load({"id": ...})."""
         from entity.get_age_entity import GetAgeEntity
         return GetAgeEntity(self, data)
 

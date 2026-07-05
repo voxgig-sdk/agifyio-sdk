@@ -88,9 +88,9 @@ get_age = client.GetAge()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `age` | `int` | No |  |
+| `count` | `int` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
@@ -99,7 +99,7 @@ get_age = client.GetAge()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetAge().load({"id": "get_age_id"})
+result = client.GetAge().load()
 ```
 
 ### Common Methods

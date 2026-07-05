@@ -11,5 +11,9 @@ export interface GetAge {
   name?: string
 }
 
-export type GetAgeLoadMatch = Partial<GetAge>
+export interface GetAgeLoadMatch {
+  age?: number
+  count?: number
+  name?: string
+}
 

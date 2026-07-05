@@ -20,7 +20,7 @@ class GetAge
     public ?string $name = null;
 }
 
-/** Match filter for GetAge#load (any subset of GetAge fields). */
+/** Request payload for GetAge#load. */
 class GetAgeLoadMatch
 {
     public ?int $age = null;

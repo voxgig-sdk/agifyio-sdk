@@ -91,9 +91,9 @@ local get_age = client:GetAge(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `age` | `number` | No |  |
+| `count` | `number` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -102,7 +102,7 @@ local get_age = client:GetAge(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetAge():load({ id = "get_age_id" })
+local result, err = client:GetAge():load()
 ```
 
 ### Common Methods

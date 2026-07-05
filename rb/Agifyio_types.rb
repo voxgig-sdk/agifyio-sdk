@@ -25,7 +25,7 @@ GetAge = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetAge#load (any subset of GetAge fields).
+# Request payload for GetAge#load.
 #
 # @!attribute [rw] age
 #   @return [Integer, nil]

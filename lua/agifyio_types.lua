@@ -12,6 +12,9 @@
 ---@field name? string
 
 ---@class GetAgeLoadMatch
+---@field age? number
+---@field count? number
+---@field name? string
 
 local M = {}
 

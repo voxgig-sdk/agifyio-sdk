@@ -98,9 +98,9 @@ get_age := client.GetAge(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age` | ``$INTEGER`` | No |  |
-| `count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `age` | `int` | No |  |
+| `count` | `int` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -109,7 +109,7 @@ get_age := client.GetAge(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetAge(nil).Load(map[string]any{"id": "get_age_id"}, nil)
+result, err := client.GetAge(nil).Load(nil, nil)
 ```
 
 ### Common Methods
