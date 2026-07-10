@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -238,15 +235,25 @@
           "url": "https://agify.io/"
         },
         "description": "Estimate age from names. Integrate age inference directly into workflows and perform efficient inference on big datasets with simple APIs. Enrich data with demographic insights.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "query",
+          "name": "apikey",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://api.agify.io"
           }
         ],
+        "summary": "Estimate age from names.",
         "termsOfService": "https://agify.io/",
         "title": "Agify.io",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://agify.io/"
       },
       "option": {},
       "target": {
@@ -299,6 +306,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -349,6 +359,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

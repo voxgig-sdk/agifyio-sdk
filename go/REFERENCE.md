@@ -91,7 +91,8 @@ same parameters as `Direct()`.
 ## GetAgeEntity
 
 ```go
-get_age := client.GetAge(nil)
+getAge := client.GetAge(nil)
+fmt.Println(getAge.GetName()) // "get_age"
 ```
 
 ### Fields
@@ -110,6 +111,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetAge(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

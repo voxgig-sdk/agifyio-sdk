@@ -53,12 +53,12 @@ func main() {
         "apikey": os.Getenv("AGIFYIO_APIKEY"),
     })
 
-    // Load a single getage — the value is the loaded record.
-    getage, err := client.GetAge(nil).Load(nil, nil)
+    // Load a single getAge — the value is the loaded record.
+    getAge, err := client.GetAge(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(getage)
+    fmt.Println(getAge)
 }
 ```
 
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getage, err := client.GetAge(nil).Load(
+getAge, err := client.GetAge(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getage) // the returned mock data
+fmt.Println(getAge) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -250,9 +250,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getage, err := client.GetAge(nil).Load(nil, nil)
+    getAge, err := client.GetAge(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // getage is the returned record
+    // getAge is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -278,7 +278,7 @@ API path: `/`
 
 ### GetAge
 
-Create an instance: `get_age := client.GetAge(nil)`
+Create an instance: `getAge := client.GetAge(nil)`
 
 #### Operations
 
@@ -297,11 +297,11 @@ Create an instance: `get_age := client.GetAge(nil)`
 #### Example: Load
 
 ```go
-get_age, err := client.GetAge(nil).Load(nil, nil)
+getAge, err := client.GetAge(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_age) // the loaded record
+fmt.Println(getAge) // the loaded record
 ```
 
 

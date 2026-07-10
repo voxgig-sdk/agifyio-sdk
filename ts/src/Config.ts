@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.agify.io',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

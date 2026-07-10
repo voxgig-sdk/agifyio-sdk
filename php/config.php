@@ -21,7 +21,7 @@ class AgifyioConfig
             "options" => [
                 "base" => "https://api.agify.io",
                 "auth" => [
-                    "prefix" => "Bearer",
+                    "prefix" => "",
                 ],
                 "headers" => [
           'content-type' => 'application/json',
