@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Agifyio SDK exists test
 
 local sdk = require("agifyio_sdk")
 
