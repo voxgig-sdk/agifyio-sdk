@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import AgifyioControl
-from core.error import AgifyioError
-from core.result import AgifyioResult
-from core.spec import AgifyioSpec
+from agifyio_sdk.config import make_config
+from agifyio_sdk.features import _make_feature
+from agifyio_sdk.core.control import AgifyioControl
+from agifyio_sdk.core.error import AgifyioError
+from agifyio_sdk.core.result import AgifyioResult
+from agifyio_sdk.core.spec import AgifyioSpec
 
 
 # True when this SDK was generated with the named feature.

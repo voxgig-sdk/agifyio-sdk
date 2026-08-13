@@ -62,7 +62,7 @@ describe('GetAgeEntity', async () => {
     // LOAD
     const get_age_ref01_ent = client.GetAge()
     const get_age_ref01_match_dt0: any = {}
-    const get_age_ref01_data_dt0 = await get_age_ref01_ent.load(get_age_ref01_match_dt0)
+    const get_age_ref01_data_dt0 = (await get_age_ref01_ent.load(get_age_ref01_match_dt0)).data()
     assert(null != get_age_ref01_data_dt0)
 
 

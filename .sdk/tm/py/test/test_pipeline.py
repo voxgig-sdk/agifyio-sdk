@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import AgifyioSDK
-from core.error import AgifyioError
-from core.result import AgifyioResult
-from core.response import AgifyioResponse
-from core.spec import AgifyioSpec
-from feature.base_feature import AgifyioBaseFeature
+from projectname_sdk.core.error import AgifyioError
+from projectname_sdk.core.result import AgifyioResult
+from projectname_sdk.core.response import AgifyioResponse
+from projectname_sdk.core.spec import AgifyioSpec
+from projectname_sdk.feature.base_feature import AgifyioBaseFeature
 
 
 def _client():

@@ -36,7 +36,7 @@ client = AgifyioSDK.new({
 
 ```ruby
 begin
-  # load returns the bare GetAge record (raises on error).
+  # load returns the ENTITY — call data_get for the GetAge record (raises on error).
   getage = client.GetAge.load()
   puts getage
 rescue => err
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = AgifyioSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 getage = client.GetAge.load()
 puts getage
 ```
@@ -272,7 +273,7 @@ Create an instance: `get_age = client.GetAge`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetAge record (raises on error).
+# load returns the ENTITY — call data_get for the GetAge record (raises on error).
 get_age = client.GetAge.load()
 ```
 

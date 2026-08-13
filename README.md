@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = AgifyioSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = AgifyioSDK.test({
+  entity: {
+    get_age: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const getage = await client.GetAge().load()
-// getage is a bare GetAge populated with mock data
+// getage is the GetAge entity, populated with mock data
+// — call getage.data() for the record itself
 console.log(getage)
 ```
 
@@ -189,7 +198,7 @@ $client = new AgifyioSDK([
 ]);
 
 
-// Load a specific getage (returns the bare record; throws on error)
+// Load a specific getage (returns the ENTITY; call data_get() for the record; throws on error)
 $getage = $client->GetAge()->load();
 print_r($getage);
 ```
@@ -221,7 +230,7 @@ client = AgifyioSDK.new({
 })
 
 
-# Load a specific getage (returns the bare record; raises on error)
+# Load a specific getage (returns the ENTITY; call data_get for the record)
 getage = client.GetAge.load()
 puts getage
 ```
@@ -357,6 +366,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://agify.io/](https://agify.io/)
 

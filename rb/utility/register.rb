@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ AgifyioUtility.registrar = ->(u) {
   u.prepare_params = AgifyioUtilities::PrepareParams
   u.prepare_path = AgifyioUtilities::PreparePath
   u.prepare_query = AgifyioUtilities::PrepareQuery
+  u.graphql_body = AgifyioUtilities::GraphqlBody
+  u.graphql_errors = AgifyioUtilities::GraphqlErrors
   u.result_basic = AgifyioUtilities::ResultBasic
   u.result_body = AgifyioUtilities::ResultBody
   u.result_headers = AgifyioUtilities::ResultHeaders

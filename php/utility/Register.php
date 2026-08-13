@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ AgifyioUtility::setRegistrar(function (AgifyioUtility $u): void {
     $u->prepare_params = [AgifyioPrepareParams::class, 'call'];
     $u->prepare_path = [AgifyioPreparePath::class, 'call'];
     $u->prepare_query = [AgifyioPrepareQuery::class, 'call'];
+    $u->graphql_body = [AgifyioGraphql::class, 'body'];
+    $u->graphql_errors = [AgifyioGraphql::class, 'errors'];
     $u->result_basic = [AgifyioResultBasic::class, 'call'];
     $u->result_body = [AgifyioResultBody::class, 'call'];
     $u->result_headers = [AgifyioResultHeaders::class, 'call'];

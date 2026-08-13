@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = AgifyioSDK.test()
 
 const getage = await client.GetAge().load()
-// getage is a bare entity populated with mock response data
+// getage is the entity, populated with mock response data
+// — call getage.data() for the record itself
 console.log(getage)
 ```
 

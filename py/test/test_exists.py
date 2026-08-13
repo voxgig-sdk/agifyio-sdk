@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Agifyio SDK exists test
 
 import pytest
 from agifyio_sdk import AgifyioSDK
