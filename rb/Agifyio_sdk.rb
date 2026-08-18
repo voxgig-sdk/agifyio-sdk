@@ -28,7 +28,7 @@ class AgifyioSDK
     utility = AgifyioUtility.new
     @_utility = utility
 
-    config = AgifyioConfig.make_config
+    config = AgifyioConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

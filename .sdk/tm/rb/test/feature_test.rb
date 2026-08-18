@@ -15,7 +15,7 @@ require_relative "../Agifyio_sdk"
 module AgifyioFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = AgifyioConfig.make_config["feature"]
+    f = AgifyioConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

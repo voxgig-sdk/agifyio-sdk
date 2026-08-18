@@ -23,7 +23,7 @@ func NewAgifyioSDK(options map[string]any) *AgifyioSDK {
 
 	sdk.utility = NewUtility()
 
-	config := MakeConfig()
+	config := SharedConfig()
 
 	sdk.rootctx = sdk.utility.MakeContext(map[string]any{
 		"client":  sdk,

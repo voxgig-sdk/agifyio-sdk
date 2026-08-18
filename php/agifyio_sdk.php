@@ -40,7 +40,7 @@ class AgifyioSDK
         $utility = new AgifyioUtility();
         $this->_utility = $utility;
 
-        $config = AgifyioConfig::make_config();
+        $config = AgifyioConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
