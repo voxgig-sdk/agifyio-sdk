@@ -33,6 +33,9 @@ class AgifyioConfig
         return [
             "main" => [
                 "name" => "Agifyio",
+                "slug" => "agifyio",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

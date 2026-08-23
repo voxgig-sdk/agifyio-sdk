@@ -19,6 +19,9 @@ module AgifyioConfig
     {
       "main" => {
         "name" => "Agifyio",
+        "slug" => "agifyio",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
