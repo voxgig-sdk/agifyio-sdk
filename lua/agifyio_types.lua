@@ -12,9 +12,9 @@
 ---@field name? string
 
 ---@class GetAgeLoadMatch
----@field age? number
----@field count? number
----@field name? string
+---@field apikey? string
+---@field country_id? string
+---@field name string
 
 local M = {}
 

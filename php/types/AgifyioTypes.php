@@ -23,8 +23,8 @@ class GetAge
 /** Request payload for GetAge#load. */
 class GetAgeLoadMatch
 {
-    public ?int $age = null;
-    public ?int $count = null;
-    public ?string $name = null;
+    public ?string $apikey = null;
+    public ?string $country_id = null;
+    public string $name;
 }
 

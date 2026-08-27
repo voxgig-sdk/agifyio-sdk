@@ -27,17 +27,17 @@ GetAge = Struct.new(
 
 # Request payload for GetAge#load.
 #
-# @!attribute [rw] age
-#   @return [Integer, nil]
+# @!attribute [rw] apikey
+#   @return [String, nil]
 #
-# @!attribute [rw] count
-#   @return [Integer, nil]
+# @!attribute [rw] country_id
+#   @return [String, nil]
 #
 # @!attribute [rw] name
-#   @return [String, nil]
+#   @return [String]
 GetAgeLoadMatch = Struct.new(
-  :age,
-  :count,
+  :apikey,
+  :country_id,
   :name,
   keyword_init: true
 )

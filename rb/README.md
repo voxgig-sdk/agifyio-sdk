@@ -37,7 +37,7 @@ client = AgifyioSDK.new({
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the GetAge record (raises on error).
-  getage = client.GetAge.load()
+  getage = client.GetAge.load({ "name" => "example_name" })
   puts getage
 rescue => err
   warn "load failed: #{err}"
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  getage = client.GetAge.load()
+  getage = client.GetAge.load({ "name" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -121,7 +121,7 @@ client = AgifyioSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-getage = client.GetAge.load()
+getage = client.GetAge.load({ "name" => "example" })
 puts getage
 ```
 
@@ -274,8 +274,31 @@ Create an instance: `get_age = client.GetAge`
 
 ```ruby
 # load returns the ENTITY — call data_get for the GetAge record (raises on error).
-get_age = client.GetAge.load()
+get_age = client.GetAge.load({ "name" => "name" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -355,7 +378,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 getage = client.GetAge
-getage.load()
+getage.load({ "name" => "example" })
 
 # getage.data_get now returns the getage data from the last load
 # getage.match_get returns the last match criteria

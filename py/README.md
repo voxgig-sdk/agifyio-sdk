@@ -45,7 +45,7 @@ client = AgifyioSDK({
 
 ```python
 try:
-    getage = client.GetAge().load()
+    getage = client.GetAge().load({"name": "example_name"})
     print(getage)
 except Exception as err:
     print(f"load failed: {err}")
@@ -58,7 +58,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    getage = client.GetAge().load()
+    getage = client.GetAge().load({"name": "example"})
     print(getage)
 except Exception as err:
     print(f"load failed: {err}")
@@ -127,7 +127,7 @@ client = AgifyioSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-getage = client.GetAge().load()
+getage = client.GetAge().load({"name": "example"})
 # getage contains the mock response record
 ```
 
@@ -280,8 +280,31 @@ Create an instance: `get_age = client.GetAge()`
 #### Example: Load
 
 ```python
-get_age = client.GetAge().load()
+get_age = client.GetAge().load({"name": "name"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -360,7 +383,7 @@ stores the returned data and match criteria internally.
 
 ```python
 getage = client.GetAge()
-getage.load()
+getage.load({"name": "example"})
 
 # getage.data_get() now returns the getage data from the last load
 # getage.match_get() returns the last match criteria

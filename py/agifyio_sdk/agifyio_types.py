@@ -22,7 +22,10 @@ class GetAge(TypedDict, total=False):
     name: str
 
 
-class GetAgeLoadMatch(TypedDict, total=False):
-    age: int
-    count: int
+class GetAgeLoadMatchRequired(TypedDict):
     name: str
+
+
+class GetAgeLoadMatch(GetAgeLoadMatchRequired, total=False):
+    apikey: str
+    country_id: str

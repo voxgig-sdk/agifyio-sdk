@@ -21,9 +21,9 @@ type GetAge struct {
 
 // GetAgeLoadMatch is the typed request payload for GetAge.LoadTyped.
 type GetAgeLoadMatch struct {
-	Age *int `json:"age,omitempty"`
-	Count *int `json:"count,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Apikey *string `json:"apikey,omitempty"`
+	CountryId *string `json:"country_id,omitempty"`
+	Name string `json:"name"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

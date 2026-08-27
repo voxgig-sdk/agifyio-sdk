@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single getAge — the value is the loaded record.
-    getAge, err := client.GetAge(nil).Load(nil, nil)
+    getAge, err := client.GetAge(nil).Load(map[string]any{"name": "example_name"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-getage, err := client.GetAge(nil).Load(nil, nil)
+getage, err := client.GetAge(nil).Load(map[string]any{"name": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 getAge, err := client.GetAge(nil).Load(
-    nil, nil,
+    map[string]any{"name": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -297,12 +297,35 @@ Create an instance: `getAge := client.GetAge(nil)`
 #### Example: Load
 
 ```go
-getAge, err := client.GetAge(nil).Load(nil, nil)
+getAge, err := client.GetAge(nil).Load(map[string]any{"name": "name"}, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(getAge) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -379,7 +402,7 @@ stores the returned data and match criteria internally.
 
 ```go
 getage := client.GetAge(nil)
-getage.Load(nil, nil)
+getage.Load(map[string]any{"name": "example"}, nil)
 
 // getage.Data() now returns the getage data from the last load
 // getage.Match() returns the last match criteria

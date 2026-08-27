@@ -12,8 +12,8 @@ export interface GetAge {
 }
 
 export interface GetAgeLoadMatch {
-  age?: number
-  count?: number
-  name?: string
+  apikey?: string
+  country_id?: string
+  name: string
 }
 
