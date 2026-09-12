@@ -94,7 +94,7 @@ module AgifyioConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
-                  "parts" => [],
+                  "segments" => [],
                   "select" => {
                     "exist" => [
                       "apikey",
@@ -106,6 +106,7 @@ module AgifyioConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [],
                 },
               ],
             },

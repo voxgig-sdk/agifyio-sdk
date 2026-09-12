@@ -108,7 +108,7 @@ class AgifyioConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [
                     'exist' => [
                       'apikey',
@@ -120,6 +120,7 @@ class AgifyioConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],

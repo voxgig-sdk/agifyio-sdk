@@ -84,7 +84,7 @@ function get_age_basic_setup($extra)
         "AGIFYIO_TEST_GET_AGE_ENTID" => $idmap,
         "AGIFYIO_TEST_LIVE" => "FALSE",
         "AGIFYIO_TEST_EXPLAIN" => "FALSE",
-        "AGIFYIO_APIKEY" => "NONE",
+        "AGIFYIO_APIKEY" => "",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -95,10 +95,17 @@ function get_age_basic_setup($extra)
 
     if ($env["AGIFYIO_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
                 "apikey" => $env["AGIFYIO_APIKEY"],
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new AgifyioSDK(Helpers::to_map($merged_opts));
     }

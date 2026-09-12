@@ -81,7 +81,7 @@ def get_age_basic_setup(extra)
     "AGIFYIO_TEST_GET_AGE_ENTID" => idmap,
     "AGIFYIO_TEST_LIVE" => "FALSE",
     "AGIFYIO_TEST_EXPLAIN" => "FALSE",
-    "AGIFYIO_APIKEY" => "NONE",
+    "AGIFYIO_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -92,6 +92,9 @@ def get_age_basic_setup(extra)
 
   if env["AGIFYIO_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["AGIFYIO_APIKEY"],
       },
