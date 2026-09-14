@@ -105,7 +105,7 @@ local result, err = client:GetAge():load({ name = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
+| TypeScript | `@voxgig-sdk/agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
 | Python | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
 | PHP | `voxgig-sdk/agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/agifyio-sdk/go` | `go get github.com/voxgig-sdk/agifyio-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:GetAge():load({ name = "example" })
 ### TypeScript
 
 ```ts
-import { AgifyioSDK } from '@voxgig-sdk/agifyio'
+import { AgifyioSDK } from '@voxgig-sdk/agifyio-sdk'
 
 const client = new AgifyioSDK({
   apikey: process.env.AGIFYIO_APIKEY,

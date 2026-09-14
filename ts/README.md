@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AgifyioSDK } from '@voxgig-sdk/agifyio'
+import { AgifyioSDK } from '@voxgig-sdk/agifyio-sdk'
 
 const client = new AgifyioSDK({
   apikey: process.env.AGIFYIO_APIKEY,
@@ -411,7 +411,7 @@ agifyio/
 Import the SDK from the package root:
 
 ```ts
-import { AgifyioSDK } from '@voxgig-sdk/agifyio'
+import { AgifyioSDK } from '@voxgig-sdk/agifyio-sdk'
 ```
 
 ### Entity state
