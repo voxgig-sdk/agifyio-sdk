@@ -1,12 +1,18 @@
 # Agifyio SDK feature factory
 
 from agifyio_sdk.feature.base_feature import AgifyioBaseFeature
+from agifyio_sdk.feature.ratelimit_feature import AgifyioRatelimitFeature
+from agifyio_sdk.feature.retry_feature import AgifyioRetryFeature
 from agifyio_sdk.feature.test_feature import AgifyioTestFeature
+from agifyio_sdk.feature.timeout_feature import AgifyioTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: AgifyioBaseFeature(),
+    "ratelimit": lambda: AgifyioRatelimitFeature(),
+    "retry": lambda: AgifyioRetryFeature(),
     "test": lambda: AgifyioTestFeature(),
+    "timeout": lambda: AgifyioTimeoutFeature(),
 }
 
 

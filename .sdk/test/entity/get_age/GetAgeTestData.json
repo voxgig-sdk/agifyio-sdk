@@ -2,20 +2,20 @@
   "existing": {
     "get_age": {
       "GET_AGE00": {
-        "age": "s1e",
-        "count": "s1f",
+        "age": 30,
+        "count": 31,
         "name": "s20",
         "id": "GET_AGE00"
       },
       "GET_AGE01": {
-        "age": "s3c",
-        "count": "s3d",
+        "age": 60,
+        "count": 61,
         "name": "s3e",
         "id": "GET_AGE01"
       },
       "GET_AGE02": {
-        "age": "s5a",
-        "count": "s5b",
+        "age": 90,
+        "count": 91,
         "name": "s5c",
         "id": "GET_AGE02"
       }
@@ -24,9 +24,283 @@
   "new": {
     "get_age": {
       "get_age_ref01": {
-        "age": "s78",
-        "count": "s79",
+        "age": 120,
+        "count": 121,
         "name": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAge",
+        "parameters": [
+          {
+            "description": "First name to estimate age for. Can be passed multiple times for batch requests (e.g., name[]=peter&name[]=john)",
+            "example": "michael",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional ISO 3166-1 alpha-2 country code to localize the age estimation to a specific country",
+            "example": "US",
+            "in": "query",
+            "name": "country_id",
+            "required": false,
+            "schema": {
+              "pattern": "^[A-Z]{2}$",
+              "type": "string"
+            }
+          },
+          {
+            "description": "API key for authenticated requests. Required for usage beyond the free tier (100 requests/day)",
+            "in": "query",
+            "name": "apikey",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "batch": {
+                    "summary": "Batch prediction for multiple names",
+                    "value": [
+                      {
+                        "age": 58,
+                        "count": 165432,
+                        "name": "peter"
+                      },
+                      {
+                        "age": 61,
+                        "count": 298456,
+                        "name": "john"
+                      }
+                    ]
+                  },
+                  "single": {
+                    "summary": "Single name prediction",
+                    "value": {
+                      "age": 56,
+                      "count": 233490,
+                      "name": "michael"
+                    }
+                  },
+                  "withCountry": {
+                    "summary": "Prediction with country localization",
+                    "value": {
+                      "age": 62,
+                      "count": 45087,
+                      "country_id": "US",
+                      "name": "michael"
+                    }
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "age": {
+                          "description": "The estimated age for the name. Null if no data is available",
+                          "example": 56,
+                          "nullable": true,
+                          "type": "integer"
+                        },
+                        "count": {
+                          "description": "The number of data records used to calculate the age estimate",
+                          "example": 233490,
+                          "type": "integer"
+                        },
+                        "country_id": {
+                          "description": "The country code that was used for localization (if provided)",
+                          "example": "US",
+                          "pattern": "^[A-Z]{2}$",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name that was queried",
+                          "example": "michael",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "age",
+                        "count"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "items": {
+                        "properties": {
+                          "age": {
+                            "description": "The estimated age for the name. Null if no data is available",
+                            "example": 56,
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "count": {
+                            "description": "The number of data records used to calculate the age estimate",
+                            "example": 233490,
+                            "type": "integer"
+                          },
+                          "country_id": {
+                            "description": "The country code that was used for localization (if provided)",
+                            "example": "US",
+                            "pattern": "^[A-Z]{2}$",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name that was queried",
+                            "example": "michael",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "age",
+                          "count"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful age prediction response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid country_id parameter"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Invalid API key"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - invalid or missing API key"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Missing 'name' parameter"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unprocessable entity - missing required name parameter"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Request limit reached"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "Internal server error"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Free tier allows 100 requests per day without API key (IP-based limiting). Paid plans require an API key.",
+            "in": "query",
+            "name": "apikey",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
