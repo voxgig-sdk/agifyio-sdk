@@ -77,6 +77,8 @@ local function make_config()
       base = "https://api.agify.io",
       auth = {
         prefix = "",
+        ["in"] = "query",
+        name = "apikey",
       },
       headers = {
         ["content-type"] = "application/json",

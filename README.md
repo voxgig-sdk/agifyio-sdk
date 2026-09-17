@@ -105,12 +105,12 @@ local result, err = client:GetAge():load({ name = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
-| Python | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
-| PHP | `voxgig-sdk/agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
+| TypeScript | `@voxgig-sdk/agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| Python | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| PHP | `voxgig-sdk/agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/agifyio-sdk/go` | `go get github.com/voxgig-sdk/agifyio-sdk/go@latest` |
-| Ruby | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
-| Lua | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/releases) |
+| Ruby | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| Lua | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/agifyio-sdk/go-cli` | `go install github.com/voxgig-sdk/agifyio-sdk/go-cli/cmd/agifyio@latest` |
 | Go MCP server | `github.com/voxgig-sdk/agifyio-sdk/go-mcp` | `go get github.com/voxgig-sdk/agifyio-sdk/go-mcp@latest` |
 
