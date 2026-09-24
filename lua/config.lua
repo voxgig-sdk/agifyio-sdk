@@ -92,14 +92,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "age",
+            ["title"] = "Age",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "count",
+            ["title"] = "Count",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
         },
@@ -110,35 +113,41 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "apikey",
-                      ["orig"] = "apikey",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "US",
-                      ["kind"] = "query",
-                      ["name"] = "country_id",
-                      ["orig"] = "country_id",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "michael",
-                      ["kind"] = "query",
-                      ["name"] = "name",
-                      ["orig"] = "name",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
                 ["segments"] = {},
+                ["parts"] = {},
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "apikey",
+                      ["orig"] = "apikey",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "country_id",
+                      ["orig"] = "country_id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["example"] = "US",
+                    },
+                    {
+                      ["name"] = "name",
+                      ["orig"] = "name",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                      ["example"] = "michael",
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "apikey",
@@ -146,11 +155,6 @@ local function make_config()
                     "name",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {},
               },
             },
           },

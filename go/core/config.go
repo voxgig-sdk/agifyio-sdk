@@ -96,14 +96,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "age",
+						"title": "Age",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "count",
+						"title": "Count",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
 						"type": "`$STRING`",
 					},
 				},
@@ -114,35 +117,41 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "apikey",
-											"orig": "apikey",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "US",
-											"kind": "query",
-											"name": "country_id",
-											"orig": "country_id",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "michael",
-											"kind": "query",
-											"name": "name",
-											"orig": "name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/",
 								"segments": []any{},
+								"parts": []any{},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "apikey",
+											"orig": "apikey",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "country_id",
+											"orig": "country_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "US",
+										},
+										map[string]any{
+											"name": "name",
+											"orig": "name",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "michael",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"apikey",
@@ -150,11 +159,6 @@ func MakeConfig() map[string]any {
 										"name",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{},
 							},
 						},
 					},

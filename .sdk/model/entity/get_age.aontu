@@ -1,0 +1,86 @@
+# Entity: get_age
+
+main: kit: entity: get_age: {
+
+  alias: field: {}
+
+  fields: {
+    age: {
+      h: "Age"
+      n: "age"
+      r: false
+      t: "`$INTEGER`"
+    }
+    count: {
+      h: "Count"
+      n: "count"
+      r: false
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "get_age"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "apikey"
+                or: "apikey"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "US"
+                k: "query"
+                n: "country_id"
+                or: "country_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "michael"
+                k: "query"
+                n: "name"
+                or: "name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/"
+          q: {
+            exist: [
+              "apikey"
+              "country_id"
+              "name"
+            ]
+          }
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

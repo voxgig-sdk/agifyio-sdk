@@ -24,32 +24,101 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "get_age": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "age",
-              "req": false,
-              "type": "`$INTEGER`"
+          "fields": {
+            "age": {
+              "a": true,
+              "h": "Age",
+              "n": "age",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "count",
-              "req": false,
-              "type": "`$INTEGER`"
+            "count": {
+              "a": true,
+              "h": "Count",
+              "n": "count",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "get_age",
           "op": {
             "load": {
@@ -57,55 +126,55 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "apikey",
-                        "orig": "apikey",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "apikey",
+                        "or": "apikey",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "US",
-                        "kind": "query",
-                        "name": "country_id",
-                        "orig": "country_id",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "US",
+                        "k": "query",
+                        "n": "country_id",
+                        "or": "country_id",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "michael",
-                        "kind": "query",
-                        "name": "name",
-                        "orig": "name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "michael",
+                        "k": "query",
+                        "n": "name",
+                        "or": "name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /",
-                    "json": "{\"operationId\":\"getAge\",\"parameters\":[{\"description\":\"First name to estimate age for. Can be passed multiple times for batch requests (e.g., name[]=peter&name[]=john)\",\"example\":\"michael\",\"in\":\"query\",\"name\":\"name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Optional ISO 3166-1 alpha-2 country code to localize the age estimation to a specific country\",\"example\":\"US\",\"in\":\"query\",\"name\":\"country_id\",\"required\":false,\"schema\":{\"pattern\":\"^[A-Z]{2}$\",\"type\":\"string\"}},{\"description\":\"API key for authenticated requests. Required for usage beyond the free tier (100 requests/day)\",\"in\":\"query\",\"name\":\"apikey\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"batch\":{\"summary\":\"Batch prediction for multiple names\",\"value\":[{\"age\":58,\"count\":165432,\"name\":\"peter\"},{\"age\":61,\"count\":298456,\"name\":\"john\"}]},\"single\":{\"summary\":\"Single name prediction\",\"value\":{\"age\":56,\"count\":233490,\"name\":\"michael\"}},\"withCountry\":{\"summary\":\"Prediction with country localization\",\"value\":{\"age\":62,\"count\":45087,\"country_id\":\"US\",\"name\":\"michael\"}}},\"schema\":{\"oneOf\":[{\"properties\":{\"age\":{\"description\":\"The estimated age for the name. Null if no data is available\",\"example\":56,\"nullable\":true,\"type\":\"integer\"},\"count\":{\"description\":\"The number of data records used to calculate the age estimate\",\"example\":233490,\"type\":\"integer\"},\"country_id\":{\"description\":\"The country code that was used for localization (if provided)\",\"example\":\"US\",\"pattern\":\"^[A-Z]{2}$\",\"type\":\"string\"},\"name\":{\"description\":\"The name that was queried\",\"example\":\"michael\",\"type\":\"string\"}},\"required\":[\"name\",\"age\",\"count\"],\"type\":\"object\"},{\"items\":{\"properties\":{\"age\":{\"description\":\"The estimated age for the name. Null if no data is available\",\"example\":56,\"nullable\":true,\"type\":\"integer\"},\"count\":{\"description\":\"The number of data records used to calculate the age estimate\",\"example\":233490,\"type\":\"integer\"},\"country_id\":{\"description\":\"The country code that was used for localization (if provided)\",\"example\":\"US\",\"pattern\":\"^[A-Z]{2}$\",\"type\":\"string\"},\"name\":{\"description\":\"The name that was queried\",\"example\":\"michael\",\"type\":\"string\"}},\"required\":[\"name\",\"age\",\"count\"],\"type\":\"object\"},\"type\":\"array\"}]}}},\"description\":\"Successful age prediction response\"},\"400\":{\"content\":{\"application/json\":{\"example\":{\"error\":\"Invalid country_id parameter\"},\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"401\":{\"content\":{\"application/json\":{\"example\":{\"error\":\"Invalid API key\"},\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Unauthorized - invalid or missing API key\"},\"422\":{\"content\":{\"application/json\":{\"example\":{\"error\":\"Missing 'name' parameter\"},\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Unprocessable entity - missing required name parameter\"},\"429\":{\"content\":{\"application/json\":{\"example\":{\"error\":\"Request limit reached\"},\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Rate limit exceeded\"},\"500\":{\"content\":{\"application/json\":{\"example\":{\"error\":\"Internal server error\"},\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message describing what went wrong\",\"type\":\"string\"}},\"required\":[\"error\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication. Free tier allows 100 requests per day without API key (IP-based limiting). Paid plans require an API key.\",\"in\":\"query\",\"name\":\"apikey\",\"type\":\"apiKey\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/",
-                  "segments": [],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/",
+                  "q": {
                     "exist": [
                       "apikey",
                       "country_id",
                       "name"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -534,17 +603,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "get_age_ref01",
                 "srcdatavar": "get_age_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
