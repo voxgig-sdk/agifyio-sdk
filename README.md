@@ -106,11 +106,11 @@ local result, err = client:GetAge():load({ name = "example" })
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
-| Python | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
-| PHP | `voxgig-sdk/agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| Python | `voxgig-sdk-agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| PHP | `voxgig-sdk/agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/agifyio-sdk/go` | `go get github.com/voxgig-sdk/agifyio-sdk/go@latest` |
-| Ruby | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
-| Lua | `voxgig-sdk-agifyio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| Ruby | `voxgig-sdk-agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
+| Lua | `voxgig-sdk-agifyio-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/agifyio-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/agifyio-sdk/go-cli` | `go install github.com/voxgig-sdk/agifyio-sdk/go-cli/cmd/agifyio@latest` |
 | Go MCP server | `github.com/voxgig-sdk/agifyio-sdk/go-mcp` | `go get github.com/voxgig-sdk/agifyio-sdk/go-mcp@latest` |
 
@@ -353,10 +353,10 @@ forking the SDK.
 
 | Feature | Purpose |
 | --- | --- |
-| **RatelimitFeature** | Client-side rate limiting via a token bucket |
-| **RetryFeature** | Automatic retry of transient failures with exponential backoff |
-| **TestFeature** | In-memory mock transport for testing without a live server |
-| **TimeoutFeature** | Per-request timeout with transport abort |
+| **RatelimitFeature** | Rate limiting |
+| **RetryFeature** | Retry |
+| **TestFeature** | Test transport |
+| **TimeoutFeature** | Timeout |
 
 Pass custom features via the `extend` option at construction time.
 
